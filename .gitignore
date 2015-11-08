@@ -1,1 +1,2 @@
-config/bot-config.php
+datas/*.txt
+.DS_STORE

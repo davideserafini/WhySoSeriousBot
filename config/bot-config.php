@@ -5,6 +5,11 @@
  BOT_TOKEN is private, NEVER commit it
 */
 
-define('BOT_TOKEN', '');
+if ( !defined( INCLUSION ) ) {
+	die();
+}
+
+define( 'BOT_TOKEN', '' );
+define( 'WEBHOOK_URL', '' );
 
 ?>
