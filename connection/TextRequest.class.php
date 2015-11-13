@@ -17,11 +17,11 @@ class TextRequest extends Request {
 	public function parseMessage() {
 		parent::parseMessage();
 		
-		if ( !isset( $this -> _rawMessage[ 'text' ] ) ) {
+		if ( !isset( $this -> _rawMessage[ 'message' ][ 'text' ] ) ) {
 			require_once( "MessageNotTextException.class.php" );
   			throw new MessageNotTextException();
   		}
-		$this -> _text = trim( $this -> _rawMessage[ 'text' ] );
+		$this -> _text = trim( $this -> _rawMessage[ 'message' ][ 'text' ] );
 	}
 
 	public function  isStart() {

@@ -20,8 +20,8 @@ abstract class Request {
 	}
 
 	public function parseMessage() {
-		$this -> _messageId = $this -> _rawMessage[ 'message_id' ];
-  		$this -> _chatId = $this -> _rawMessage[ 'chat' ][ 'id' ];
+		$this -> _messageId = $this -> _rawMessage[ 'message' ][ 'message_id' ];
+  		$this -> _chatId = $this -> _rawMessage[ 'message' ][ 'chat' ][ 'id' ];
 	}
 
 	public function getMessageId() {

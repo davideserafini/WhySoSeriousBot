@@ -14,7 +14,6 @@ require_once( CONFIG_DIR . "bot-config.php" );
 
 // Read request
 $content = file_get_contents("php://input");
-
 // Create Request object
 require_once( CONNECTION_DIR . "TextRequest.class.php" );
 require_once( CONNECTION_DIR . "WrongMessageException.class.php" );
@@ -36,12 +35,12 @@ try {
 	// Set message from exception
 	require_once( CONNECTION_DIR . "TextResponse.class.php" );
 	$responseParams = array(
-		"chat_id" => $textRequest.getChatId(),
-		"reply_to_message_id" => $textRequest.getMessageId(),
+		"chat_id" => $textRequest -> getChatId(),
+		"reply_to_message_id" => $textRequest -> getMessageId(),
 		"text" => $responseMessage = $exception -> getMessage()
 	);
 	$response = new TextResponse( $responseParams );
-	$response.send();
+	$response -> send();
 	exit;
 }
 
@@ -51,18 +50,19 @@ if ( !$textRequest -> isStop() ) {
 	// Let's do it simple for now: jokes are saved in simple txt files
 	// Read the content and send it to the bot
 
+	require_once( JOKES_DIR . "JokesChooser.class.php" );
 	$joke = JokesChooser::getJoke();
 	
 	// Create Response
 	// Set message from exception
 	require_once( CONNECTION_DIR . "TextResponse.class.php" );
 	$responseParams = array(
-		"chat_id" => $textRequest.getChatId(),
-		"reply_to_message_id" => $textRequest.getMessageId(),
+		"chat_id" => $textRequest -> getChatId(),
+		"reply_to_message_id" => $textRequest -> getMessageId(),
 		"text" => $responseMessage = $joke -> getMessage()
 	);
 	$response = new TextResponse( $responseParams );
-	$response.send();
+	$response -> send();
 	exit;
 }
 

@@ -5,17 +5,19 @@
  * Some code taken from https://core.telegram.org/bots/samples/hellobot
  */
 
-if ( !defined( BOT_TOKEN ) ) {
+if ( !defined( "BOT_TOKEN" ) ) {
 	die("uh oh, something wen't wrong here");
 }
 
 abstract class Response {
 
- 	protected $_url = "https://api.telegram.org/bot" . BOT_TOKEN . "/";
-	protected $_method = "";
+ 	protected $_url;
+	protected $_method;
 	protected $_responseParams;
 	
 	function __construct( $responseParams ) {
+		$this -> _url = 'https://api.telegram.org/bot' . BOT_TOKEN . '/';
+		$this -> _method = '';
 		$this -> _responseParams = $responseParams;
 	}
 
@@ -29,7 +31,8 @@ abstract class Response {
 	}
 
 	protected function setupRequest() {
-		$finalUrl = API_URL . $this -> _method . '?' . http_build_query( $this -> _responseParams );
+		$finalUrl = $this -> _url . $this -> _method . '?' . http_build_query( $this -> _responseParams );
+		echo $finalUrl;
 		$responseInstance = curl_init( $finalUrl );
 		curl_setopt($responseInstance, CURLOPT_RETURNTRANSFER, true);
   		curl_setopt($responseInstance, CURLOPT_CONNECTTIMEOUT, 5);
@@ -73,8 +76,8 @@ abstract class Response {
 	}
 
 	public function send() {
-		$requestToDo = setupRequest();
-		doRequest( $requestToDo );
+		$requestToDo = $this -> setupRequest();
+		$this -> doRequest( $requestToDo );
 	}
 
 }

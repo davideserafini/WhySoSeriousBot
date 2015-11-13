@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( JOKES_STORAGE_DIR ) ) {
+if ( !defined( "JOKES_STORAGE_DIR" ) ) {
 	die("uh oh, something wen't wrong here");
 }
 
@@ -12,8 +12,8 @@ class JokesChooser {
 
 		$chosenJokeIndex = rand(0, $numberOfJokes - 1 );
 
-		require_once( "Joke.class.php" );
-		return new Joke( $chosenJokeIndex );
+		require_once( "TextJoke.class.php" );
+		return new TextJoke( $chosenJokeIndex );
 	}
 
 }

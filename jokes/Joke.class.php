@@ -4,8 +4,8 @@ abstract class Joke {
 
 	protected $_index;
 
-	function __constructor( $index ) {
-		$this -> _index = $jokeIndex;
+	function __construct( $index ) {
+		$this -> _index = $index;
 	}
 
 	abstract function getMessage();
