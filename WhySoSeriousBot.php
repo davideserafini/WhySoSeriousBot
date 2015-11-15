@@ -14,6 +14,8 @@ require_once( CONFIG_DIR . "bot-config.php" );
 
 // Read request
 $content = file_get_contents("php://input");
+error_log($content);
+
 // Create Request object
 require_once( CONNECTION_DIR . "TextRequest.class.php" );
 require_once( CONNECTION_DIR . "WrongMessageException.class.php" );
@@ -58,7 +60,6 @@ if ( !$textRequest -> isStop() ) {
 	require_once( CONNECTION_DIR . "TextResponse.class.php" );
 	$responseParams = array(
 		"chat_id" => $textRequest -> getChatId(),
-		"reply_to_message_id" => $textRequest -> getMessageId(),
 		"text" => $responseMessage = $joke -> getMessage()
 	);
 	$response = new TextResponse( $responseParams );
